@@ -30,6 +30,7 @@ public class PokerHub extends Hub {
 	private Table HubPokerTable = new Table();
 	private GamePlay HubGamePlay;
 	private int iDealNbr = 0;
+	private Player;
 
 	public PokerHub(int port) throws IOException {
 		super(port);
@@ -69,12 +70,17 @@ public class PokerHub extends Hub {
 			case StartGame:
 				// Get the rule from the Action object.
 				Rule rle = new Rule(act.geteGame());
+				Player DealerID = actPlayer;
 				
 				//TODO Lab #5 - If neither player has 'the button', pick a random player
-				//		and assign the button.				
-
+				//		and assign the button.		
+				HubGamePlay = new GamePlay(rle, DealerID.getPlayerID());
+				
+				HubGamePlay.setGamePlayers(HubPokerTable.getHmPlayer());
+				
 				//TODO Lab #5 - Start the new instance of GamePlay
-								
+				HubGamePlay.StateOfGamePlay(HubGamePlay);
+				
 				// Add Players to Game
 				
 				// Set the order of players
